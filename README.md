@@ -1,8 +1,10 @@
 ## 멋쟁이 사자처럼
 ### 코어 자바스크립트 학습 저장소
 ---
-학습 주제별로 브랜치를 나눠 수업을 진행합니다.
-학습 자료는 해당 브랜치로 이동 후 확인할 수 있습니다.
+학습이 완료된 항목은 체크박스로 표시됩니다.
 
-1. Javascript Core Branch [바로가기](#)
-1. Javascript DOM Branch [바로가기](#)
+### Basics
+
+- [ ] Core Structure [바로가기](#)
+- [ ] Variable [바로가기](#)
+- [ ] Strict Mode [바로가기](#)
