@@ -1,2 +1,16 @@
 {
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          "comment",
+          "keyword.control"
+        ],
+        "settings": {
+          "fontStyle": " "
+        }
+      }
+    ],
+    "comments": "#fcb901"
+  }
 }
