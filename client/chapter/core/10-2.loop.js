@@ -98,7 +98,7 @@ function next2(node) {
   // node가 문자일 때만 
   if(typeof node === 'string'){
     node = document.querySelector(node);
-  }  // validation 밸리데이션
+  }  // validation -> 밸리데이션(확인)
 
   do {
 
