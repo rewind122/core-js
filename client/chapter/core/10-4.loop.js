@@ -74,7 +74,7 @@ Object.defineProperty(obj, 'age', {
   configurable: true
 })
 
-// 고정 Object.freese(obj) => 해동 불가!
+// 고정 Object.freeze(obj) => 해동 불가!
 
 for (let key in javaScript) {
   if (Object.prototype.hasOwnProperty.call(javaScript, key)) {
