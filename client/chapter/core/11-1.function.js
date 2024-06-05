@@ -50,9 +50,9 @@ const result = calcPrice(1000,3000,0);
 // 좋은 함수 작성 여건
 
 // 1. 함수의 이름을 잘 지어야 한다. (동사) / 가독성 => 읽었을 때 바로 기능을 알 수 있다.
-// 2. 전역의 오염을 막는다.
-// 3. 하나의 기능만을 수행해야 한다. 
-// 4. 재사용성이 좋아야 한다.  
+// 2. 하나의 기능만을 수행해야 한다. 
+// 3. 전역의 오염을 막는다.
+// 4. 재사용성이 좋아야 한다.  ( 매개변수 => 유연한 함수 )
 
 
 
@@ -91,7 +91,8 @@ rem(20) // '1.25rem'
 rem('30px', 10) // '3rem'
 
 // css(node: string, prop: string, value: number|strung) : string;
-let css;
+
+const first = document.querySelector('.first');
 
 function setStyle(node, prop, value) {
 
@@ -102,9 +103,64 @@ function setStyle(node, prop, value) {
   node.style[prop] = value;
 }
 
+//  => 인라인 방식으로 스타일이 들어감 
+
 
 
 // setStyle('.first', 'color', 'blue')
+
+
+
+
+
+
+// getCoputedStyle  스타일 가져오기
+
+
+function getStyle(node, prop){
+
+  if(typeof node === 'string') node = document.querySelector(node);
+  if(typeof prop !== 'string') throw new Error('getStyle 함수의 두 번째 인수는 문자 타입이어야 합니다.')
+
+  return getComputedStyle(node)[prop];
+}
+
+
+const h1FontSize = getStyle('.first', 'fontSize');
+
+// console.log(h1FontSize); 
+
+
+
+function css(node, prop, value) {
+
+  // if(!value) {
+  //   // getter
+  //   return getStyle(node, prop);
+  // } else {
+  //   // setter
+  //   getStyle(node, prop, value)
+  // }
+
+  return !value ? getStyle(node,prop) : setStyle(node, prop, value);
+  // 어차피 setStyle 함수는 undefined가 반환되므로 return을 맨앞에 써줘도 결과는 같다.
+}
+
+css( '.first', 'color', 'red' )
+css( '.first', 'color')
+
+
+
+/* 
+함수 만들기!!
+1. function name
+2. argument (함수 실행부)
+3. parameter
+4. return value
+5. validation
+6. Test Driven Development (TDD)
+*/
+
 
 
 
