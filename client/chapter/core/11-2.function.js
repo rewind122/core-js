@@ -24,10 +24,12 @@ let calculateTotal = function (){
   // arguments => 함수 안에서만 접근 가능한 인수들의 집합 객체로서 배열과 유사하여 유사배열이라 불리는 지역 변수
 
   let total = 0;
+  // for문
   // for(let i = 0; i < arguments.length; i++){
   //   total = total + arguments[i];
   // }
 
+  // for..of문
   // for(let value of arguments){
   //   total += value;
   // }
@@ -41,10 +43,10 @@ let calculateTotal = function (){
 
   // const arr = [...arguments];
   // const arr = Array.from(arguments);
-  const arr = Array.prototype.slice.call(arguments);
+  // const arr = Array.prototype.slice.call(arguments);
 
 
-  // forEach
+  // forEach 배열의 메서드
   // 배열의 개수만큼 알아서 반복 => 무한루프에 빠질 일도 없다!!
   // arr.forEach(function(price){
   //   total += price;
@@ -167,9 +169,9 @@ cb(
 
 
 
-  // higher-order function 고차함수
+  // higher-order function 고차함수(다음 함수에 반영?)
 
-  // 함수를 인수로 받아 처리함
+  // 함수를 인수로 받아 처리함(콜백함수와 동일)
   // 함수를 리턴함
 
   // 함수를 연결해서 사용?(커링?)
