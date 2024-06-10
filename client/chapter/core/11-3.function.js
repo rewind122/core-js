@@ -15,6 +15,7 @@ let resultZ = calculateTotal(9000, -2500, 5000, 11900);
 // console.log(resultZ);
 
 // 함수 선언 → 화살표 함수 (표현)식
+
 //                  rest parameter 나머지 파라미터(항상 맨 뒤 인자로 있어야 함)
 //                - 유사배열이 아니기 때문에 바로 배열의 메서드를 쓸 수 있다는 장점
 //                - 이름은 자유(args말고 딴 거 써도 됨!)
