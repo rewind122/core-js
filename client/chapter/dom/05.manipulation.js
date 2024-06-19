@@ -8,6 +8,21 @@
 // - document.createTextNode(value) – 새로운 텍스트 노드 생성
 // - element.cloneNode(deep) – 요소 복제. deep==true일 경우 모든 자손 요소도 복제
 
+
+const div = document.createElement('div');
+
+div.className = 'text-box'
+div.textContent = '본문 시작'
+div.setAttribute('data-value','1')
+
+console.log(div);
+
+
+document.body.append(div)
+
+
+
+
 /* 노드 삽입, 삭제 메서드 ---------------------------------------------------- */
 
 // - node.append(노드나 문자열) – node 끝에 노드를 삽입
@@ -27,10 +42,44 @@
 /* 특정 위치에 삽입 --------------------------------------------------------- */
 
 // - insertAdjacentHTML
+
+const h1 = getNode('h1');
+
+const tag = `<div class="title"> like lion </div>`;
+
+document.body.insertAdjacentHTML('beforeend', tag);
+
+
+
 // - insertAdjacentElement
 // - insertAdjacentText
 
-// - "beforebegin" – elem 바로 앞에 html을 삽입
-// - "afterbegin" – elem의 첫 번째 자식 요소 바로 앞에 html을 삽입
-// - "beforeend" – elem의 마지막 자식 요소 바로 다음에 html을 삽입
-// - "afterend" – elem 바로 다음에 html을 삽입
+// - before -> "beforebegin" – elem 바로 앞에 html을 삽입
+// - first  -> "afterbegin"  – elem의 첫 번째 자식 요소 바로 앞에 html을 삽입
+// - last   -> "beforeend"   – elem의 마지막 자식 요소 바로 다음에 html을 삽입
+// - after  -> "afterend"    – elem 바로 다음에 html을 삽입
+
+
+// function insertBefore(node, text){
+//   if(isString(node)) node = getNode(node);
+//   node.insertAdjacentHTML('beforebdgin', text)
+// }
+
+// function insertFirst(node, text){
+//   if(isString(node)) node = getNode(node);
+//   node.insertAdjacentHTML('afterbegin', text)
+// }
+
+// function insertLast(node, text){
+//   if(isString(node)) node = getNode(node);
+//   node.insertAdjacentHTML('beforeend', text)
+// }
+
+// function insertAfter(node, text){
+//   if(isString(node)) node = getNode(node);
+//   node.insertAdjacentHTML('afterend', text)
+// }
+
+
+
+
