@@ -1,84 +1,47 @@
-/* global clearContents */
+import data from './data/data.js'
+import { 
+  getNode, 
+  getRandom, 
+  insertLast, 
+  clearContents, 
+} from './lib/index.js'
 
 
 
-function phase1(){
-  // 1. input value 값 가져오기
-  //    - input 선택하기
-  //    - input에게 input 이벤트를 걸어준다.
-  //    - input.value 값을 가져온다.
+// [phase-1]
+// 1. 주접 떨기 버튼을 클릭하는 함수
+//    - 주접 떨기 버튼 가져오기
+//    - 이벤트 연결하기 addEnventListener('click')
 
-  const first = getNode('#firstNumber');
-  const second = getNode('#secondNumber');
-  const result = getNode('.result');
-  const clear = getNode('#clear');
+// 2. input 값 가져오기
+//    - input.value
 
-
-  function handleInput() {
-    const firstValue = Number(first.value);
-    const secondValue = +second.value;
-    const total = firstValue + secondValue;
-
-    clearContents(result);
-
-    insertLast(result, total);
-  }
-
-  function handleClear(e) {
-    e.preventDefault();
-
-    clearContents(first);
-    clearContents(second);
-    result.textContent = '-';
-  }
-
-  first.addEventListener('input', handleInput);
-  second.addEventListener('input', handleInput);
-  clear.addEventListener('click', handleClear);
-}
+// 3. data 함수에서 주접 1개 꺼내기
 
 
-phase1()
+const submit = getNode('#submit');
+const nameField = getNode('#nameField');
+const result = getNode('.result');
 
-function phase2(){
-  const calculator = getNode('.calculator');
-  const result = getNode('.result');
-  const clear = getNode('#clear');
-  const numberInputs = [...document.querySelectorAll('input:not(#clear)')];
 
-  function handleInput() {
-    const total = numberInputs.reduce((acc, cur) => acc + Number(cur.value), 0);
 
-    clearContents(result);
-    insertLast(result, total);
-  }
 
-  function handleClear(e) {
-    e.preventDefault();
-    numberInputs.forEach(clearContents);
-    result.textContent = '-';
-  }
+function handleSubmit(e) {
+  e.preventDefault();
 
-  calculator.addEventListener('input', handleInput);
-  clear.addEventListener('click', handleClear);
+  const name = nameField.value;
+  const list = data(name);
+  const pick = list[getRandom(list.length)];
+  
+  clearContents(result);
+  insertLast(result, pick);
+
+
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+submit.addEventListener('click',handleSubmit)
 
 
 

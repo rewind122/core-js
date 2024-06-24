@@ -1,42 +1,56 @@
-function getAttr(node, prop) {
-  if (isString(node)) node = getNode(node);
 
-  if (!isString(prop)) throw new TypeError('getAttr 함수의 두 번째 인수는 문자 타입이어야 합니다.');
+import { getNode } from "./getNode.js";
+import { isString } from "../utils/type.js";
+
+function getAttr(node,prop){
+
+  if(isString(node)) node = getNode(node);
+  // if(typeof node === 'string') node = document.querySelector(node);
+
+  if(!isString(prop)) throw new TypeError('getAttr 함수의 두 번째 인수는 문자 타입 이어야 합니다.')
 
   return node.getAttribute(prop);
+
 }
 
+function typeError(message){
+  return new TypeError(message + '문자 타입 이어야 합니다.');
+}
 
-function setAttr(node, prop, value) {
-  if (isString(node)) node = getNode(node);
+function setAttr (node,prop,value){
+  
+  if(isString(node)) node = getNode(node);
 
-  if (!isString(prop)) throw new TypeError('setAttr 함수의 두 번째 인수는 문자 타입이어야 합니다.');
+  if(!isString(prop)){
+    typeError('setAttr 함수의 두 번째 인수는')
+  }
 
-  if (value === '') return node.removeAttribute(prop);
+  if(value === ''){
+    node.removeAttribute(prop);
+    return;
+  }
 
-  if (!value) throw new ReferenceError('setAttr 함수의 세 번째 인수는 필수 입력값입니다.'); // 순서 중요
-  // 네 번째 조건문이 세 번째 조건문 위로 올라가면 removeAttribute는 동작 안 함
-
-  // prop에 data가 있어? 그럼 dataset으로 넣기
-  if(prop.startWith('data')){
+  if(prop.startsWith('data')){
     prop = prop.slice(5)
     node.dataset[prop] = value;
     return;
   }
 
-  node.setAttribute(prop, value);
+
+  if(!value) throw new ReferenceError('setAttr 함수의 세 번째 인수는 필수 입력값 입니다.');
+
+  node.setAttribute(prop,value);
 }
 
 
-// function attr(node, prop, value){
-
+// function attr(node,prop,value){
 //   if(!value){
-//     return getAttr(node, prop);
-//   }
-//   else{
+//     return getAttr(node,prop)
+//   }else{
 //     setAttr(node,prop,value)
 //   }
-
 // }
 
-const attr = (node, prop, value) => (!value ? getAttr(node, prop) : setAttr(node, prop, value));
+ export const attr = (node,prop,value) => !value ? getAttr(node,prop) : setAttr(node,prop,value)
+
+ 
