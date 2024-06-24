@@ -1,9 +1,112 @@
-const a = 'Hello';
-
-console.log('안녕 웹브라우저!');
+/* global clearContents */
 
 
 
-// alert('마우스 우클릭 사용 금지. 불펌 금지.');
-// confirm('정말 지울거야?');
-// prompt('당신의 이름은 무엇입니까?');
+function phase1(){
+  // 1. input value 값 가져오기
+  //    - input 선택하기
+  //    - input에게 input 이벤트를 걸어준다.
+  //    - input.value 값을 가져온다.
+
+  const first = getNode('#firstNumber');
+  const second = getNode('#secondNumber');
+  const result = getNode('.result');
+  const clear = getNode('#clear');
+
+
+  function handleInput() {
+    const firstValue = Number(first.value);
+    const secondValue = +second.value;
+    const total = firstValue + secondValue;
+
+    clearContents(result);
+
+    insertLast(result, total);
+  }
+
+  function handleClear(e) {
+    e.preventDefault();
+
+    clearContents(first);
+    clearContents(second);
+    result.textContent = '-';
+  }
+
+  first.addEventListener('input', handleInput);
+  second.addEventListener('input', handleInput);
+  clear.addEventListener('click', handleClear);
+}
+
+
+phase1()
+
+function phase2(){
+  const calculator = getNode('.calculator');
+  const result = getNode('.result');
+  const clear = getNode('#clear');
+  const numberInputs = [...document.querySelectorAll('input:not(#clear)')];
+
+  function handleInput() {
+    const total = numberInputs.reduce((acc, cur) => acc + Number(cur.value), 0);
+
+    clearContents(result);
+    insertLast(result, total);
+  }
+
+  function handleClear(e) {
+    e.preventDefault();
+    numberInputs.forEach(clearContents);
+    result.textContent = '-';
+  }
+
+  calculator.addEventListener('input', handleInput);
+  clear.addEventListener('click', handleClear);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
