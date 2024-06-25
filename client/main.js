@@ -2,6 +2,7 @@ import {
   attr,
   clearContents,
   diceAnimation,
+  endScroll,
   getNode,
   getNodes,
   insertLast, 
@@ -37,6 +38,8 @@ function createItem(value){
       <td>${(total += value)}</td>
     </tr>
   `;
+
+  return template;
 }
 
 
@@ -47,7 +50,7 @@ function renderRecordItem(){
 
 
   insertLast('.recordList tbody', createItem(diceValue));
-  
+  endScroll(recordListWrapper);
 }
 
 

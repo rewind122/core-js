@@ -37,8 +37,6 @@ export function addClass(node,...className){
     
 }
 
-
-
 export function removeClass(node,className){
 
   if(typeof node === 'string') node = document.querySelector(node)
