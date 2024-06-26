@@ -1,5 +1,5 @@
-import { isString } from "../utils";
-import { getNode } from "./getNode";
+import { isString } from "../utils/type.js";
+import { getNode } from "./getNode.js";
 
 export function endScroll(node){
   if(isString(node)) node = getNode(node);
