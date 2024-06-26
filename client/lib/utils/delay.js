@@ -1,5 +1,7 @@
 import { getNode } from '../dom/getNode.js';
+import { insertLast } from '../dom/insert.js';
 import { isNumber, isObject } from './type.js';
+import { xhrPromise } from './xhr.js';
 
 
 
@@ -150,7 +152,7 @@ function delayP(options){
     config = { ...defaultOptions, ...options };
   }
 
-  console.log(config);
+  // console.log(config);
 
   let { shouldRejected, data, errorMessage, timeout } = config;
 
@@ -166,7 +168,96 @@ function delayP(options){
 }
 
 
-delayP();
+// delayP();
+
+
+
+
+
+
+
+/* ------------------------------------------------------ */
+/*                      async / await                     */
+/* ------------------------------------------------------ */
+
+// async 함수는 무 조 건 Promise object를 반환한다. 
+// 프라미스를 아주 쉽고 빠르게 만들어서 바로 리턴해줄 수 있는 기능을 가진 함수
+// 함수 앞에 붙이면 성공한 상태의 프라미스 객체 result 값을 반환
+
+// await 2가지 기능 수행
+//       1. result 바로 꺼내오기 (await 뒤에 오는 게 프라미스 객체여야만 가능)
+//       2. 코드 실행 흐름 제어
+
+// then처럼 에러를 핸들링할 수 없음 => try/catch를 쓰거나 then을 쓰거나~~
+
+async function delayA(data){
+
+  const p = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+      resolve('성공!');
+    },2000);
+  })
+
+  const result = await p;
+
+  console.log(result);
+
+  return data;
+}
+
+
+// delayA('지연')
+// .then((res)=>{
+//   console.log(res);
+// })
+
+// const data = await delayA('지연');
+// console.log(data);
+
+
+
+async function 라면끓이기(){
+
+  const a = await delayP({ data: '물' });
+  console.log(a);
+
+  const b = await delayP({ data: '스프' });
+  console.log(b);
+
+  const c = await delayP({ data: '면' });
+  console.log(c);
+
+  const d = await delayP({ data: '그릇' });
+  console.log(d);
+}
+
+
+// 라면끓이기()
+
+
+
+
+async function getData(){
+
+  const data = await xhrPromise.get('https://pokeapi.co/api/v2/pokemon/440');
+
+  console.log(data.sprites.other.showdown['front_default']);
+
+  insertLast(document.body, `<img src="${data.sprites.other.showdown['front_default']}" alt="" />`);
+}
+
+
+getData()
+
+
+
+
+
+
+
+
+
+
 
 
 
