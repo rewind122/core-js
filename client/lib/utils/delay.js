@@ -127,7 +127,7 @@ const p = new Promise((resolve,reject)=>{
 // 명시적으로 리턴값을 정해주면 PromiseResult 값이 그걸로 변한다.
 // 여기서 setTimeout을 주는 이유는 실제 통신할 때 생기는 딜레이를 구현하기 위해서고 실제 통신할 때는 setTimeout줄 필요없다.
 // then의 매개변수를 하나만 받는 상황에서 실패한 결과값이 떨어지면 => uncaught 에러 발생! 마지막에 catch로 잡아주면 된다.
-//  uncaught로 나왔다는 건 핸들링이 안됐다는거라서 catch로 잡아서 처리해주는거
+// uncaught로 나왔다는 건 핸들링이 안됐다는거라서 catch로 잡아서 처리해주는거
 
 
 
@@ -140,7 +140,7 @@ const defaultOptions = {
   timeout: 1000,
 };
 
-function delayP(options){
+export function delayP(options){
 
   let config = { ...defaultOptions };
 
@@ -239,15 +239,15 @@ async function 라면끓이기(){
 
 async function getData(){
 
-  const data = await xhrPromise.get('https://pokeapi.co/api/v2/pokemon/440');
+  const data = await xhrPromise.get('https://pokeapi.co/api/v2/pokemon/1');
 
-  console.log(data.sprites.other.showdown['front_default']);
+  // console.log(data.sprites.other.showdown['front_default']);
 
   insertLast(document.body, `<img src="${data.sprites.other.showdown['front_default']}" alt="" />`);
 }
 
 
-getData()
+// getData()
 
 
 
